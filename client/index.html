@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
+		<script src="https://kit.fontawesome.com/62c5908d07.js" crossorigin="anonymous"></script>
 		<title>Unicorn Budget | The Magical Budget for Kids</title>
 	</head>
 	<body>
@@ -14,7 +15,68 @@
 			</nav>
 		</header>
 
-		<main></main>
+		<main>
+			<h1>Budget</h1>
+
+			<!-- This is for the Post Request -->
+			<h3>New Category</h3>
+			<section id="new-category">
+				<input id="categoryInput" placeholder="Category Name" />
+				<input id="amountInput" placeholder="Budgeted Amount" type="number" step=".01" />
+				<!-- <input id="spentInput" placeholder="Spent" type="number" max="0.00" step=".01" /> -->
+				<button id="addLine"><i class="fa-solid fa-circle-plus"></i></button>
+			</section>
+
+			<!-- This is for the Put Request -->
+			<section id="budget-list">
+				<h3>Current Budget</h3>
+				<div id="load-category">
+					<!-- <div class="task2">
+						<div class="content2/budget-line">
+							<input 
+							type="text" 
+							class="text2" 
+							value="${}" 
+							readonly>
+						</div>
+						<div class="actions2">
+							<button class="edit">EditIcon</button>
+							<button class="delete"></button>
+						</div>
+					</div> -->
+				</div>
+			</section>
+
+			<!-- Testing the below from YT-TASK LIST -->
+
+			<form id="new-task-form">
+				<input type="text" name="new-task-input" id="new-task-input" placeholder="What do you have planned?" />
+				<input type="number" name="budget-amount-input" id="new-budgeted-amount-input" placeholder="Budgeted Amount? 0.00" />
+				<button type="submit" id="new-task-submit"><i class="fa-solid fa-circle-plus"></i></button>
+			</form>
+
+			<section class="task-list">
+				<h2>Tasks</h2>
+
+				<div id="tasks">
+					<!-- <div class="task">
+						<div class="content">
+							<input 
+								type="text" 
+								class="text" 
+								value="A new task"
+								readonly>
+						</div>
+						<div class="actions">
+							<button class="edit">Edit</button>
+							<button class="delete">Delete</button>
+						</div>
+					</div> -->
+				</div>
+			</section>
+
+			<br />
+		</main>
 
 		<script src="../node_modules/axios/dist/axios.min.js"></script>
 		<script src="index.js"></script>

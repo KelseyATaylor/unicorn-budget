@@ -1,0 +1,28 @@
+.budget-line {
+	display: flex;
+	justify-content: space-evenly;
+	border-radius: 15px;
+	border: 2px solid purple;
+	margin: 5px;
+}
+
+:root {
+	--dark: #374151;
+	--darker: #1f2937;
+	--darkest: #111827;
+	--gray: #6b7280;
+	--light: #eee;
+	--pink: #ec4899;
+	--purple: #8b5cf6;
+}
+
+/* * {
+	box-sizing: border-box;
+	marking: ;
+} */
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}

@@ -34,28 +34,32 @@ module.exports = {
 	},
 
 	editCategory: (req, res) => {
-		const { category, amount, spent, budgetId } = req.body;
+		const { category, amount, spent } = req.body;
+		const { budget_id } = req.params;
 
 		sequelize
 			.query(
 				`UPDATE budget
             SET 
-            category_name = '${category}',
+            category = '${category}',
             amount = ${amount},
             spent = ${spent}
-            WHERE budget_id = ${budgetId};`
+            WHERE budget_id = ${budget_id};`
 			)
 			.then(() => res.sendStatus(200))
 			.catch((err) => console.log(err));
 	},
 
 	deleteCategory: (req, res) => {
-		const { budgetId } = req.body;
+		const { budget_id } = req.params;
 
-		sequelize.query(
-			`DELETE
-            FROM budget
-            WHERE budget_id = ${budgetId};`
-		);
+		sequelize
+			.query(
+				`DELETE FROM budget
+            WHERE budget_id = ${budget_id};
+			`
+			)
+			.then(() => res.sendStatus(200))
+			.catch((err) => console.log(err));
 	},
 };
