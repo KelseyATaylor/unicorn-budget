@@ -40,15 +40,41 @@ const createBudgetLine = (line) => {
 
 	const inputLine = document.createElement("form");
 	inputLine.setAttribute("id", "inputLine-form");
+
+	// const someToggleName = () => {
+	// };
+
 	inputLine.innerHTML = `
     <input type="text" name="category" class="text2" id="test1" value="${line.category}" readonly></input>
 	<input type="number" name="amount" class="text2" value="${line.amount}" step=".01" readonly></input>
 	<input type="number" name="spent" class="text2" value = "${line.spent}" readonly ></input>
 	<input type="number" name="available" value="${available}" readonly></input>
 	
-    <button onclick="someToggleName()"><i class="fa-solid fa-pen-to-square"></i></button>
+    <button id='primary_edit_btn'><i class="fa-solid fa-pen-to-square"></i></button>
+
 	`;
 	budgetLine.appendChild(inputLine);
+
+	inputLine.addEventListener("submit", (e) => {
+		e.preventDefault();
+		let edit_btn = document.getElementById("primary_edit_btn");
+		// let editCategory = document.querySelector("#test1");
+		if (edit_btn.innerHTML == '<i class="fa-solid fa-pen-to-square"></i>') {
+			edit_btn.innerHTML = '<i class="fa-solid fa-circle-plus"></i>';
+		} else {
+			edit_btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+		}
+	});
+
+	const delete_btn = document.createElement("button");
+	delete_btn.classList.add("delete2");
+	delete_btn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+	delete_btn.setAttribute("onclick", `deleteLine(${line.budget_id})`);
+	budgetLine.appendChild(delete_btn);
+
+	delete_btn.addEventListener("submit", (e) => {
+		e.preventDefault();
+	});
 
 	// const input_test = document.createElement("input");
 	// input_test.classList.add("text2");
@@ -63,60 +89,56 @@ const createBudgetLine = (line) => {
 	// 	</button>;
 
 	//creates the actions class + edit & delete buttons
-	const actions_el = document.createElement("div");
-	actions_el.classList.add("actions2");
+	// const actions_el = document.createElement("div");
+	// actions_el.classList.add("actions2");
 
-	const edit_el = document.createElement("button");
-	edit_el.classList.add("edit2");
-	// edit_el.setAttribute("id", "edit-id");
-	edit_el.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+	// const edit_el = document.createElement("button");
+	// edit_el.classList.add("edit2");
+	// // edit_el.setAttribute("id", "edit-id");
+	// edit_el.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
 
-	const delete_el = document.createElement("button");
-	delete_el.classList.add("delete2");
-	delete_el.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+	// const delete_el = document.createElement("button");
+	// delete_el.classList.add("delete2");
+	// delete_el.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
 
-	//turns edit & delete into children of class Actions
-	actions_el.appendChild(edit_el);
-	actions_el.appendChild(delete_el);
+	// //turns edit & delete into children of class Actions
+	// actions_el.appendChild(edit_el);
+	// actions_el.appendChild(delete_el);
 
-	//appends actions to task_el_2 (needs a new name) then that appends to loadCategory
-	task_el_2.appendChild(actions_el);
-	loadCategory.appendChild(task_el_2);
+	// //appends actions to task_el_2 (needs a new name) then that appends to loadCategory
+	// task_el_2.appendChild(actions_el);
 
 	//EventListener
 	// const editToggle = document.getElementById("edit-id");
 	// const getTextInput = document.getElementById("test1");
 
-	edit_el.addEventListener("click", (e) => {
-		if (edit_el.innerHTML == '<i class="fa-solid fa-pen-to-square"></i>') {
-			edit_el.innerHTML = '<i class="fa-solid fa-circle-plus"></i>';
+	// edit_el.addEventListener("click", (e) => {
+	// 	if (edit_el.innerHTML == '<i class="fa-solid fa-pen-to-square"></i>') {
+	// 		edit_el.innerHTML = '<i class="fa-solid fa-circle-plus"></i>';
 
-			budgetLine.removeAttribute("readonly");
-			budgetLine.focus();
-		} else {
-			edit_el.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
-			budgetLine.setAttribute("readonly", "readonly");
-		}
-	});
+	// 		budgetLine.removeAttribute("readonly");
+	// 		budgetLine.focus();
+	// 	} else {
+	// 		edit_el.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+	// 		budgetLine.setAttribute("readonly", "readonly");
+	// 	}
+	// });
+	loadCategory.appendChild(task_el_2);
 };
 
-// const someToggleName = () => {
-//     if (some){}
-// };
+const deleteLine = (budget_id) => {
+	axios.delete(`${baseURL}/api/budget/${budget_id}`).then((res) => {
+		loadCategory.innerHTML = "";
+		displayBudget(res.data);
+	});
+};
 
 const editLine = (budget_id) => {
 	axios.put(`${baseURL}/api/budget/${budget_id}`).then((res) => {
-		//grab the part of the code that selects the pencil, then you should be able to run the remove attribute of the readonly - but now I'm worried this isn't technically a put request
+		loadCategory.innerHTML = "";
+		displayBudget(res.data);
 	});
 };
-
-//This isn't working, get help.
-// const updateLine = (budget_id) => {
-// 	axios.put(`${baseURL}/api/budget/${budget_id}`).then((res) => {
-// 		loadCategory.innerHTML = "";
-// 		displayBudget(res.data);
-// 	});
-// };
 
 //TESTING THIS CODE FROM YT-TASK LIST
 window.addEventListener("load", () => {
