@@ -19,26 +19,41 @@
 			<h1>Budget</h1>
 
 			<!-- This is for the Post Request -->
-			<h3>New Category</h3>
+			<h3>New Category (Working)</h3>
 			<section id="new-category">
 				<input id="categoryInput" placeholder="Category Name" />
 				<input id="amountInput" placeholder="Budgeted Amount" type="number" step=".01" />
-				<!-- <input id="spentInput" placeholder="Spent" type="number" max="0.00" step=".01" /> -->
 				<button id="addLine"><i class="fa-solid fa-circle-plus"></i></button>
 			</section>
+
+			<!-- <h1>Budget 2</h1> -->
+
+			<!-- This is for the YT Add category section - not currently connected to database/post request -->
+			<!-- <h3>New Category</h3>
+			<form id="new-category-form">
+				<input type="text" name="new-category-input" id="new-category-input" placeholder="Category Name" />
+				<input
+					type="number"
+					name="budget-amount-input-2"
+					id="new-budgeted-amount-input-2"
+					placeholder="Budgeted Amount - Not connected to database"
+					step=".01"
+				/>
+				<button type="submit" id="addLine"><i class="fa-solid fa-circle-plus"></i></button>
+			</form> -->
 
 			<!-- This is for the Put Request -->
 			<section id="budget-list">
 				<h3>Current Budget</h3>
 				<div id="load-category">
 					<!-- <div class="task2">
-						<div class="content2/budget-line">
+						<div (form)class="content2/budget-line">
 							<input 
 							type="text" 
 							class="text2" 
 							value="${}" 
 							readonly>
-						</div>
+						</div (form)>
 						<div class="actions2">
 							<button class="edit">EditIcon</button>
 							<button class="delete"></button>

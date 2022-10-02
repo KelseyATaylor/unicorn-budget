@@ -34,16 +34,28 @@ const createBudgetLine = (line) => {
 
 	const budgetLine = document.createElement("div");
 	budgetLine.classList.add("budget-line");
+	task_el_2.appendChild(budgetLine);
 
 	let available = `${line.amount - line.spent}`;
 
-	budgetLine.innerHTML = `
-    <input type="text" class="text2" value="${line.category}" readonly></input>
-    <input type="number" class="text2" value="${line.amount}" step=".01" readonly></input>
-    <input type="number" class="text2" value = "${line.spent}" readonly ></input>
-    <input value="${available}" readonly></input>
-    `;
-	task_el_2.appendChild(budgetLine);
+	const inputLine = document.createElement("form");
+	inputLine.setAttribute("id", "inputLine-form");
+	inputLine.innerHTML = `
+    <input type="text" name="category" class="text2" id="test1" value="${line.category}" readonly></input>
+	<input type="number" name="amount" class="text2" value="${line.amount}" step=".01" readonly></input>
+	<input type="number" name="spent" class="text2" value = "${line.spent}" readonly ></input>
+	<input type="number" name="available" value="${available}" readonly></input>
+	
+    <button onclick="someToggleName()"><i class="fa-solid fa-pen-to-square"></i></button>
+	`;
+	budgetLine.appendChild(inputLine);
+
+	// const input_test = document.createElement("input");
+	// input_test.classList.add("text2");
+	// input_test.type = "text";
+	// input_test.value = `${line.category}`;
+	// input_test.setAttribute("readonly", "readonly");
+	// budgetLine.appendChild(input_test);
 
 	// Removed this from above - not sure how to make it work but I don't want to delete it just in case
 	// <button onclick="updateLine(${line.budget_id})">
@@ -56,7 +68,7 @@ const createBudgetLine = (line) => {
 
 	const edit_el = document.createElement("button");
 	edit_el.classList.add("edit2");
-	edit_el.setAttribute("id", "edit-id");
+	// edit_el.setAttribute("id", "edit-id");
 	edit_el.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
 
 	const delete_el = document.createElement("button");
@@ -70,21 +82,31 @@ const createBudgetLine = (line) => {
 	//appends actions to task_el_2 (needs a new name) then that appends to loadCategory
 	task_el_2.appendChild(actions_el);
 	loadCategory.appendChild(task_el_2);
+
+	//EventListener
+	// const editToggle = document.getElementById("edit-id");
+	// const getTextInput = document.getElementById("test1");
+
+	edit_el.addEventListener("click", (e) => {
+		if (edit_el.innerHTML == '<i class="fa-solid fa-pen-to-square"></i>') {
+			edit_el.innerHTML = '<i class="fa-solid fa-circle-plus"></i>';
+
+			budgetLine.removeAttribute("readonly");
+			budgetLine.focus();
+		} else {
+			edit_el.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+			budgetLine.setAttribute("readonly", "readonly");
+		}
+	});
 };
+
+// const someToggleName = () => {
+//     if (some){}
+// };
 
 const editLine = (budget_id) => {
 	axios.put(`${baseURL}/api/budget/${budget_id}`).then((res) => {
 		//grab the part of the code that selects the pencil, then you should be able to run the remove attribute of the readonly - but now I'm worried this isn't technically a put request
-
-		const editToggle = document.getElementById("edit-id");
-
-		//These will probably need to be able to target the inputs above and .removeAttribute("readonly")
-
-		editToggle.addEventListener(click, (e) => {
-			if (editToggle.innerHTML == '<i class="fa-solid fa-pen-to-square"') {
-				editToggle.innerHTML = '<i class="fa-solid fa-circle-plus"></i>';
-			}
-		});
 	});
 };
 
