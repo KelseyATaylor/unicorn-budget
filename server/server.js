@@ -13,7 +13,7 @@ app.use(cors());
 
 app.get("/api/budget", getBudget);
 app.post("/api/budget", createCategory);
-app.put("/api/budget/:budget_id", editCategory);
+app.put("/api/budget", editCategory);
 app.delete("/api/budget/:budget_id", deleteCategory);
 
 app.listen(SERVER_PORT, () => console.log(`Sam carrying Frodo to Mordor on port ${SERVER_PORT}`));

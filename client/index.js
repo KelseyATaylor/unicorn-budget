@@ -36,104 +36,96 @@ const createBudgetLine = (line) => {
 	budgetLine.classList.add("budget-line");
 	task_el_2.appendChild(budgetLine);
 
-	let available = `${line.amount - line.spent}`;
-
 	const inputLine = document.createElement("form");
 	inputLine.setAttribute("id", "inputLine-form");
 
-	// const someToggleName = () => {
-	// };
+	const input_category = document.createElement("input");
+	input_category.classList.add("text2");
+	input_category.type = "text";
+	input_category.value = `${line.category}`;
+	input_category.setAttribute("readonly", "readonly");
 
-	inputLine.innerHTML = `
-    <input type="text" name="category" class="text2" id="test1" value="${line.category}" readonly></input>
-	<input type="number" name="amount" class="text2" value="${line.amount}" step=".01" readonly></input>
-	<input type="number" name="spent" class="text2" value = "${line.spent}" readonly ></input>
-	<input type="number" name="available" value="${available}" readonly></input>
-	
-    <button id='primary_edit_btn'><i class="fa-solid fa-pen-to-square"></i></button>
+	inputLine.appendChild(input_category);
 
-	`;
+	const input_budgeted = document.createElement("input");
+	input_budgeted.classList.add("text2");
+	input_budgeted.type = "number";
+	input_budgeted.value = `${line.amount}`;
+	input_budgeted.setAttribute("readonly", "readonly");
+
+	inputLine.appendChild(input_budgeted);
+
+	const input_spent = document.createElement("input");
+	input_spent.classList.add("text2");
+	input_spent.type = "number";
+	input_spent.value = `${line.spent}`;
+	input_spent.setAttribute("readonly", "readonly");
+
+	inputLine.appendChild(input_spent);
+
+	// const available = document.createElement("input");
+	// available.classList.add("text2");
+	// available.value = `${line.amount - line.spent}`;
+	// available.setAttribute("readonly", "readonly");
+
+	// inputLine.appendChild(available);
+
+	const edit_btn = document.createElement("button");
+	edit_btn.classList.add("edit2");
+	edit_btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+	// edit_btn.setAttribute("onclick", `editLine(${line.budget_id})`);
+
+	inputLine.appendChild(edit_btn);
+
 	budgetLine.appendChild(inputLine);
 
-	inputLine.addEventListener("submit", (e) => {
+	edit_btn.addEventListener("click", (e) => {
 		e.preventDefault();
-		let edit_btn = document.getElementById("primary_edit_btn");
-		// let editCategory = document.querySelector("#test1");
+		// let edit_btn = document.getElementById("primary_edit_btn");
 		if (edit_btn.innerHTML == '<i class="fa-solid fa-pen-to-square"></i>') {
-			edit_btn.innerHTML = '<i class="fa-solid fa-circle-plus"></i>';
+			edit_btn.innerHTML = `<i class="fa-solid fa-circle-plus" onclick="editLine_save(${line.budget_id})"></i>`;
+			input_category.removeAttribute("readonly");
+			input_budgeted.focus();
+			input_budgeted.removeAttribute("readonly");
+			input_spent.removeAttribute("readonly");
 		} else {
 			edit_btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
+			input_category.setAttribute("readonly", "readonly");
+			input_budgeted.setAttribute("readonly", "readonly");
+			input_spent.setAttribute("readonly", "readonly");
 		}
 	});
 
 	const delete_btn = document.createElement("button");
 	delete_btn.classList.add("delete2");
 	delete_btn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-	delete_btn.setAttribute("onclick", `deleteLine(${line.budget_id})`);
+	// delete_btn.setAttribute("onclick", `deleteLine(${line.budget_id})`);
 	budgetLine.appendChild(delete_btn);
 
-	delete_btn.addEventListener("submit", (e) => {
-		e.preventDefault();
+	delete_btn.addEventListener("click", () => {
+		axios.delete(`${baseURL}/api/budget/${line.budget_id}`).then((res) => {
+			loadCategory.innerHTML = "";
+			displayBudget(res.data);
+			location.reload();
+		});
 	});
 
-	// const input_test = document.createElement("input");
-	// input_test.classList.add("text2");
-	// input_test.type = "text";
-	// input_test.value = `${line.category}`;
-	// input_test.setAttribute("readonly", "readonly");
-	// budgetLine.appendChild(input_test);
-
-	// Removed this from above - not sure how to make it work but I don't want to delete it just in case
-	// <button onclick="updateLine(${line.budget_id})">
-	// 		<i class="fa-solid fa-pen-to-square"></i>
-	// 	</button>;
-
-	//creates the actions class + edit & delete buttons
-	// const actions_el = document.createElement("div");
-	// actions_el.classList.add("actions2");
-
-	// const edit_el = document.createElement("button");
-	// edit_el.classList.add("edit2");
-	// // edit_el.setAttribute("id", "edit-id");
-	// edit_el.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
-
-	// const delete_el = document.createElement("button");
-	// delete_el.classList.add("delete2");
-	// delete_el.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
-
-	// //turns edit & delete into children of class Actions
-	// actions_el.appendChild(edit_el);
-	// actions_el.appendChild(delete_el);
-
-	// //appends actions to task_el_2 (needs a new name) then that appends to loadCategory
-	// task_el_2.appendChild(actions_el);
-
-	//EventListener
-	// const editToggle = document.getElementById("edit-id");
-	// const getTextInput = document.getElementById("test1");
-
-	// edit_el.addEventListener("click", (e) => {
-	// 	if (edit_el.innerHTML == '<i class="fa-solid fa-pen-to-square"></i>') {
-	// 		edit_el.innerHTML = '<i class="fa-solid fa-circle-plus"></i>';
-
-	// 		budgetLine.removeAttribute("readonly");
-	// 		budgetLine.focus();
-	// 	} else {
-	// 		edit_el.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
-	// 		budgetLine.setAttribute("readonly", "readonly");
-	// 	}
+	// delete_btn.addEventListener("submit", (e) => {
+	// 	e.preventDefault();
+	// 	window.alert("Category deleted successully!");
 	// });
+
 	loadCategory.appendChild(task_el_2);
 };
 
-const deleteLine = (budget_id) => {
-	axios.delete(`${baseURL}/api/budget/${budget_id}`).then((res) => {
-		loadCategory.innerHTML = "";
-		displayBudget(res.data);
-	});
-};
+// const deleteLine = (budget_id) => {
+// 	axios.delete(`${baseURL}/api/budget/${budget_id}`).then((res) => {
+// 		loadCategory.innerHTML = "";
+// 		displayBudget(res.data);
+// 	});
+// };
 
-const editLine = (budget_id) => {
+const editLine_save = (budget_id) => {
 	axios.put(`${baseURL}/api/budget/${budget_id}`).then((res) => {
 		loadCategory.innerHTML = "";
 		displayBudget(res.data);
@@ -226,7 +218,7 @@ window.addEventListener("load", () => {
 const addLine = () => {
 	let categoryInput = document.querySelector("#categoryInput");
 	let amountInput = document.querySelector("#amountInput");
-	let spentInput = document.querySelector("#spentInput");
+	// let spentInput = document.querySelector("#spentInput");
 
 	let newLine = {
 		category: categoryInput.value,
@@ -241,6 +233,7 @@ const addLine = () => {
 		amountInput.innerHTML = "";
 		// spentInput.innerHTML = "";
 		displayBudget(res.data);
+		location.reload();
 	});
 };
 

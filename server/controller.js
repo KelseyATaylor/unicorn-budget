@@ -26,7 +26,6 @@ module.exports = {
 			.query(
 				`INSERT INTO budget (category, amount, spent)
             VALUES ('${category}', ${amount}, 0)
-            RETURNING *
             ;`
 			)
 			.then((dbRes) => res.status(200).send(dbRes[0]))
@@ -34,8 +33,8 @@ module.exports = {
 	},
 
 	editCategory: (req, res) => {
-		const { category, amount, spent } = req.body;
-		const { budget_id } = req.params;
+		const { category, amount, spent, budget_id } = req.body;
+		// const { budget_id } = req.params;
 
 		sequelize
 			.query(
@@ -56,10 +55,12 @@ module.exports = {
 		sequelize
 			.query(
 				`DELETE FROM budget
-            WHERE budget_id = ${budget_id};
-			`
+            WHERE budget_id = ${+budget_id}
+			;`
 			)
-			.then(() => res.sendStatus(200))
+			.then((dbRes) => res.status(200).send(dbRes[0]))
+			// .then(() => res.sentStatus(200))
+			//ask why it was returning two undefined columns when I didn't have the dbres?
 			.catch((err) => console.log(err));
 	},
 };
