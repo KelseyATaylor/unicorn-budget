@@ -6,20 +6,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
 		<script src="https://kit.fontawesome.com/62c5908d07.js" crossorigin="anonymous"></script>
+		<link rel="icon" href="./assets/unicorn-logo.png" type="image/x-icon" />
 		<title>Unicorn Budget | The Magical Budget for Kids</title>
 	</head>
 	<body>
 		<header>
 			<nav>
-				<!-- <img src="" alt=""> -->
+				<img src="./assets/unicorn-logo.png" alt="unicorn-logo" id="unicorn-logo" />
+				<h1>Unicorn Budget</h1>
 			</nav>
+			<!-- <h2>The Magical Budget for Kids</h2> -->
 		</header>
 
 		<main>
-			<h1>Budget</h1>
+			<div class="budget-title">
+				<h1>Budget</h1>
+			</div>
 
 			<!-- This is for the Post Request -->
-			<h3>New Category (Working)</h3>
+
+			<!-- Creates a new Category -->
 			<section id="new-category">
 				<input id="categoryInput" placeholder="Category Name" />
 				<input id="amountInput" placeholder="Budgeted Amount" type="number" step=".01" />
@@ -27,25 +33,10 @@
 				<button id="addLine"><i class="fa-solid fa-circle-plus"></i></button>
 			</section>
 
-			<!-- <h1>Budget 2</h1> -->
-
-			<!-- This is for the YT Add category section - not currently connected to database/post request -->
-			<!-- <h3>New Category</h3>
-			<form id="new-category-form">
-				<input type="text" name="new-category-input" id="new-category-input" placeholder="Category Name" />
-				<input
-					type="number"
-					name="budget-amount-input-2"
-					id="new-budgeted-amount-input-2"
-					placeholder="Budgeted Amount - Not connected to database"
-					step=".01"
-				/>
-				<button type="submit" id="addLine"><i class="fa-solid fa-circle-plus"></i></button>
-			</form> -->
-
 			<!-- This is for the Put Request -->
+
+			<!-- Displays database of current budget values -->
 			<section id="budget-list">
-				<h3>Current Budget</h3>
 				<section class="budget-header-container">
 					<p>Category</p>
 					<p>Budgeted</p>
@@ -53,35 +44,53 @@
 					<p>Available</p>
 				</section>
 				<div id="load-category">
-					<!-- <div class="task2">
-						<div (form)class="content2/budget-line">
-							<input 
-							type="text" 
-							class="text2" 
-							value="${}" 
-							readonly>
-						</div (form)>
-						<div class="actions2">
-							<button class="edit">EditIcon</button>
-							<button class="delete"></button>
-						</div>
-					</div> -->
+					<!-- <div class="budget-line" (task)>
+							<form class="inputLine" (content)>
+								<input 
+									class="text-input" 
+									type="text" 
+									value=`${line.category}` 
+									readonly>
+								<input
+									class="text-input"
+									type="number"
+									value=`${line.amount}`
+									readonly>
+								<input
+									class="text-input"
+									type="number"
+									value=`${line.spent}`
+									readonly>
+								<input
+									class="text-input"
+									value=`${line.amount - line.spent}`
+									readonly>
+
+								<button class="actions edit-btn">
+									<i class="fa-solid fa-pen-to-square"></i>
+								</button>
+								<button class="actions delete-btn">
+									<i class="fa-solid fa-trash-can"></i>
+								</button>
+							</form>
+						</div> -->
 				</div>
 			</section>
 
 			<!-- Testing the below from YT-TASK LIST -->
 
-			<form id="new-task-form">
+			<!-- <form id="new-task-form">
 				<input type="text" name="new-task-input" id="new-task-input" placeholder="What do you have planned?" />
 				<input type="number" name="budget-amount-input" id="new-budgeted-amount-input" placeholder="Budgeted Amount? 0.00" />
 				<button type="submit" id="new-task-submit"><i class="fa-solid fa-circle-plus"></i></button>
-			</form>
+			</form> -->
 
-			<section class="task-list">
+			<!-- <section class="task-list">
 				<h2>Tasks</h2>
 
-				<div id="tasks">
-					<!-- <div class="task">
+				<div id="tasks"> -->
+			<!-- The below children are the structure created by JS -->
+			<!-- <div class="task">
 						<div class="content">
 							<input 
 								type="text" 
@@ -93,11 +102,9 @@
 							<button class="edit">Edit</button>
 							<button class="delete">Delete</button>
 						</div>
-					</div> -->
+					</div>
 				</div>
-			</section>
-
-			<br />
+			</section> -->
 		</main>
 
 		<script src="../node_modules/axios/dist/axios.min.js"></script>

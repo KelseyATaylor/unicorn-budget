@@ -1,10 +1,10 @@
-.budget-line {
+/* .budget-line {
 	display: flex;
 	justify-content: space-evenly;
 	border-radius: 15px;
 	border: 2px solid purple;
 	margin: 5px;
-}
+} */
 
 :root {
 	--dark: #374151;
@@ -14,6 +14,18 @@
 	--light: #eee;
 	--pink: #ec4899;
 	--purple: #8b5cf6;
+	--pink1: #f294e3;
+	--purple1: #4b3a8c;
+	--teal: #1ec6eb;
+	--yellow1: #f2d230;
+	--yellow2: #fff289;
+	--teal2: #0d7d96;
+}
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Fira sans", sans-serif;
 }
 
 /* * {
@@ -21,13 +33,193 @@
 	marking: ;
 } */
 
+/* .budget-header-container {
+	display: flex;
+	justify-content: space-evenly;
+} */
+
 body {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	min-height: 100vh;
+	color: #fff;
+	background-color: var(--dark);
+}
+
+header {
+	padding: 2rem 1rem;
+	/* max-width: 800px; */
+	width: 100%;
+	margin: 0 auto;
+	background-color: var(--purple1);
+}
+
+nav {
+	display: flex;
+	justify-content: left;
+	align-items: center;
+}
+
+#unicorn-logo {
+	border-radius: 50%;
+	max-width: 10%;
+}
+
+header h1 {
+	font-size: 2.5rem;
+	font-weight: 900;
+	margin-bottom: 1rem;
+	color: var(--light);
+
+	background-image: linear-gradient(to left, var(--teal), var(--pink1));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	padding: 1rem;
+}
+
+#new-category {
+	display: flex;
+}
+
+input,
+button {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
+}
+
+#categoryInput {
+	flex: 1 1 40%;
+	background-color: var(--darker);
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-right: 1rem;
+	color: var(--light);
+	font-size: 1.25rem;
+}
+
+#new-task-input::placeholder {
+	color: var(--gray);
+}
+
+#amountInput {
+	/* flex-grow | flex-shrink | flex-basis */
+	flex: 1 1 0%;
+	background-color: var(--darker);
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-right: 1rem;
+	color: var(--light);
+	font-size: 1.25rem;
+}
+
+#amountInput::placeholder {
+	color: var(--gray);
+}
+
+#addLine {
+	color: var(--pink);
+	font-size: 2rem;
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	cursor: pointer;
+	transition: 0.4s;
+}
+
+#addLine:hover {
+	opacity: 0.8;
+}
+
+#addLine:active {
+	opacity: 0.6;
+}
+
+main {
+	flex: 1 1 0%;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.budget-title {
+	display: flex;
+	justify-content: center;
+	padding: 2rem;
+}
+
+.budget-list {
+	padding: 0.5rem;
 }
 
 .budget-header-container {
 	display: flex;
+	align-items: center;
 	justify-content: space-evenly;
+	padding: 2rem;
+}
+
+.budget-header-container p {
+	font-size: 1.25rem;
+	font-weight: 300;
+	color: var(--gray);
+	margin-bottom: 1rem;
+}
+
+#load-category .budget-line {
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--darkest);
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-bottom: 1rem;
+}
+
+.budget-line .inputLine {
+	flex: 1 1 0%;
+}
+
+.budget-line .inputLine .text-input {
+	color: var(--light);
+	font-size: 1rem;
+	/* width: 100%;
+	display: block; */
+	transition: 0.4s;
+}
+
+.budget-line .inputLine .text-input:not(:read-only) {
+	color: var(--pink);
+}
+
+/* Not sure this one does anything */
+.budget-line .actions {
+	display: flex;
+	margin: 0 -0.5rem;
+}
+
+.budget-line button {
+	cursor: pointer;
+	margin: 0 0.5rem;
+	font-size: 1.5rem;
+	font-weight: 700;
+	transition: 0.4s;
+}
+
+.budget-line button:hover {
+	opacity: 0.8;
+}
+
+.budget-line button:active {
+	opacity: 0.6;
+}
+
+.budget-line .edit-btn {
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.budget-line .delete-btn {
+	color: crimson;
 }

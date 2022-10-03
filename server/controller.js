@@ -33,13 +33,14 @@ module.exports = {
 	},
 
 	editCategory: (req, res) => {
-		const { category, amount, spent, budget_id } = req.body;
-		// const { budget_id } = req.params;
+		const { category, amount, spent } = req.body;
+		const { budget_id } = req.params;
 
 		sequelize
 			.query(
 				`UPDATE budget
             SET 
+			budget_id = ${budget_id},
             category = '${category}',
             amount = ${amount},
             spent = ${spent}
