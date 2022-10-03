@@ -223,3 +223,13 @@ main {
 .budget-line .delete-btn {
 	color: crimson;
 }
+
+.currency-wrap {
+	position: relative;
+}
+
+.currency-code {
+	/* position: absolute; */
+	/* left: 8px; */
+	/* top: 10px; */
+}

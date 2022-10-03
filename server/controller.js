@@ -14,7 +14,10 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 module.exports = {
 	getBudget: (req, res) => {
 		sequelize
-			.query(`SELECT * FROM budget;`)
+			.query(
+				`SELECT * FROM budget
+			ORDER BY budget_id ASC;`
+			)
 			//When you add users you'll do WHERE users on all of your functions in here
 			.then((dbRes) => res.status(200).send(dbRes[0]))
 			.catch((err) => console.log(err));
@@ -36,17 +39,19 @@ module.exports = {
 		const { category, amount, spent } = req.body;
 		const { budget_id } = req.params;
 
+		console.log(req.body);
+		console.log(req.params);
+
 		sequelize
 			.query(
 				`UPDATE budget
             SET 
-			budget_id = ${budget_id},
             category = '${category}',
             amount = ${amount},
             spent = ${spent}
             WHERE budget_id = ${budget_id};`
 			)
-			.then(() => res.sendStatus(200))
+			.then((dbRes) => res.status(200).send(dbRes[0]))
 			.catch((err) => console.log(err));
 	},
 
@@ -59,8 +64,8 @@ module.exports = {
             WHERE budget_id = ${+budget_id}
 			;`
 			)
-			.then((dbRes) => res.status(200).send(dbRes[0]))
-			// .then(() => res.sentStatus(200))
+			// .then((dbRes) => res.status(200).send(dbRes[0]))
+			.then(() => res.sentStatus(200))
 			//ask why it was returning two undefined columns when I didn't have the dbres?
 			.catch((err) => console.log(err));
 	},

@@ -31,36 +31,64 @@ const createBudgetLine = (line) => {
 	const inputLine = document.createElement("form");
 	inputLine.classList.add("inputLine");
 
+	const ic = document.createElement("div");
+	ic.classList.add("currency-wrap");
 	const input_category = document.createElement("input");
 	input_category.classList.add("text-input");
 	input_category.type = "text";
 	input_category.value = `${line.category}`;
 	input_category.setAttribute("readonly", "readonly");
+	input_category.setAttribute("id", `category-input-${line.budget_id}`);
 
-	inputLine.appendChild(input_category);
+	ic.appendChild(input_category);
+	inputLine.appendChild(ic);
 
+	const ib = document.createElement("div");
+	ib.classList.add("currency-wrap");
+	const ib_c = document.createElement("span");
+	ib_c.classList.add("currency-code");
+	ib_c.innerHTML = "$";
 	const input_budgeted = document.createElement("input");
 	input_budgeted.classList.add("text-input");
 	input_budgeted.type = "number";
 	input_budgeted.value = `${line.amount}`;
 	input_budgeted.setAttribute("readonly", "readonly");
+	input_budgeted.setAttribute("id", `amount-input-${line.budget_id}`);
+	input_budgeted.setAttribute("step", "0.01");
 
-	inputLine.appendChild(input_budgeted);
+	ib.appendChild(ib_c);
+	ib.appendChild(input_budgeted);
+	inputLine.appendChild(ib);
 
+	const is = document.createElement("div");
+	is.classList.add("currency-wrap");
+	const is_c = document.createElement("span");
+	is_c.classList.add("currency-code");
+	is_c.innerHTML = "$";
 	const input_spent = document.createElement("input");
 	input_spent.classList.add("text-input");
 	input_spent.type = "number";
 	input_spent.value = `${line.spent}`;
 	input_spent.setAttribute("readonly", "readonly");
+	input_spent.setAttribute("id", `spent-input-${line.budget_id}`);
 
-	inputLine.appendChild(input_spent);
+	is.appendChild(is_c);
+	is.appendChild(input_spent);
+	inputLine.appendChild(is);
 
+	const av = document.createElement("div");
+	av.classList.add("currency-wrap");
+	const av_c = document.createElement("span");
+	av_c.classList.add("currency-code");
+	av_c.innerHTML = "$";
 	const available = document.createElement("input");
 	available.classList.add("text-input");
 	available.value = `${line.amount - line.spent}`;
 	available.setAttribute("readonly", "readonly");
 
-	inputLine.appendChild(available);
+	av.appendChild(av_c);
+	av.appendChild(available);
+	inputLine.appendChild(av);
 
 	const edit_btn = document.createElement("button");
 	edit_btn.classList.add("edit-btn");
@@ -86,6 +114,7 @@ const createBudgetLine = (line) => {
 			const delete_btn = document.createElement("button");
 			delete_btn.classList.add("delete-btn");
 			delete_btn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+			delete_btn.setAttribute("id", "delete-btn");
 
 			inputLine.appendChild(delete_btn);
 
@@ -94,7 +123,7 @@ const createBudgetLine = (line) => {
 				axios.delete(`${baseURL}/api/budget/${line.budget_id}`).then((res) => {
 					loadCategory.innerHTML = "";
 					displayBudget(res.data);
-					location.reload();
+					// location.reload();
 				});
 			});
 		} else {
@@ -103,6 +132,8 @@ const createBudgetLine = (line) => {
 			input_budgeted.setAttribute("readonly", "readonly");
 			input_spent.setAttribute("readonly", "readonly");
 			available.setAttribute("readonly", "readonly");
+
+			inputLine.removeChild(delete_btn);
 		}
 	});
 
@@ -113,7 +144,17 @@ const createBudgetLine = (line) => {
 };
 
 const editLine_save = (budget_id) => {
-	axios.put(`${baseURL}/api/budget/${budget_id}`).then((res) => {
+	//access the ids & make them the values of my object
+	const cat_input = document.getElementById(`category-input-${budget_id}`);
+	const amt_input = document.getElementById(`amount-input-${budget_id}`);
+	const spt_input = document.getElementById(`spent-input-${budget_id}`);
+
+	let edit_object = {
+		category: cat_input.value,
+		amount: amt_input.value,
+		spent: spt_input.value,
+	};
+	axios.put(`${baseURL}/api/budget/${budget_id}`, edit_object).then((res) => {
 		loadCategory.innerHTML = "";
 		displayBudget(res.data);
 		location.reload();

@@ -28,7 +28,10 @@
 			<!-- Creates a new Category -->
 			<section id="new-category">
 				<input id="categoryInput" placeholder="Category Name" />
-				<input id="amountInput" placeholder="Budgeted Amount" type="number" step=".01" />
+				<div class="currency-wrap">
+					<span class="currency-code">$</span>
+					<input id="amountInput" placeholder="Budgeted Amount $" type="number" step="0.01" />
+				</div>
 				<!-- <input id="spentInput" placeholder="Spent" type="number" step=".01" /> -->
 				<button id="addLine"><i class="fa-solid fa-circle-plus"></i></button>
 			</section>
@@ -46,25 +49,37 @@
 				<div id="load-category">
 					<!-- <div class="budget-line" (task)>
 							<form class="inputLine" (content)>
-								<input 
-									class="text-input" 
-									type="text" 
-									value=`${line.category}` 
-									readonly>
-								<input
-									class="text-input"
-									type="number"
-									value=`${line.amount}`
-									readonly>
-								<input
-									class="text-input"
-									type="number"
-									value=`${line.spent}`
-									readonly>
-								<input
+								<div class="currency-wrap">
+									<input 
+										class="text-input" 
+										type="text" 
+										value=`${line.category}` 
+										readonly>
+								</div>
+								<div class="currency-wrap">
+									<span class="currency-code">$</span>
+									<input
+										class="text-input"
+										type="number"
+										value=`${line.amount}`
+										readonly>
+								</div>
+								<div class="currency-wrap">
+									<span class="currency-code">$</span>
+									<input
+										class="text-input"
+										type="number"
+										value=`${line.spent}`
+										readonly>
+								</div>
+								
+								<div class="currency-wrap">
+									<span class="currency-code">$</span>
+									<input
 									class="text-input"
 									value=`${line.amount - line.spent}`
 									readonly>
+								</div>
 
 								<button class="actions edit-btn">
 									<i class="fa-solid fa-pen-to-square"></i>
