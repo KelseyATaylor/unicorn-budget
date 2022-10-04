@@ -199,7 +199,7 @@ button {
 
 main {
 	flex: 1 1 10%;
-	/* max-width: 900px; */
+	max-width: 900px;
 	width: 100%;
 	margin: 0 auto;
 }
