@@ -12,6 +12,7 @@
 	--yellow1: #f2d230;
 	--yellow2: #fff289;
 	--teal2: #0d7d96;
+	--green: #6d9f3a;
 }
 
 /* Fonts
@@ -59,25 +60,34 @@ nav {
 	display: flex;
 	justify-content: left;
 	align-items: center;
+	padding-left: 3rem;
 }
 
 #unicorn-logo {
 	border-radius: 50%;
 	max-width: 10%;
 }
+header div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
 
 header h1 {
-	font-size: 2.5rem;
+	font-size: 3rem;
 	font-weight: 900;
-	margin-bottom: 1rem;
+	/* margin-bottom: 1rem; */
 	color: var(--light);
 	font-family: "Abril Fatface", cursive;
-	padding: 1rem;
+	padding: 0.5rem;
+	/* max-width: 50%; */
 }
 
 header h3 {
 	font-family: "Handlee", cursive;
 	color: var(--light);
+	font-size: 1.25rem;
 }
 
 .month_toBeB_container {
@@ -100,6 +110,10 @@ header h3 {
 	text-align: center;
 	width: 12rem;
 	background-color: var(--pink1);
+	color: var(--light);
+}
+
+.input_toBeBudgeted::placeholder {
 	color: var(--light);
 }
 
@@ -180,11 +194,11 @@ button {
 }
 
 #addLine {
-	/* color: var(--pink); */
 	font-size: 2rem;
-	background-image: linear-gradient(to right, var(--teal2), var(--yellow1));
+	background-image: linear-gradient(to right, var(--teal2), var(--green));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	color: var(--green);
 	cursor: pointer;
 	transition: 0.4s;
 }
@@ -254,6 +268,7 @@ main {
 }
 .currency-code-nc {
 	font-size: 1.75rem;
+	color: var(--light);
 }
 
 .currency-code {
