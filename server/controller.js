@@ -28,7 +28,7 @@ module.exports = {
 		sequelize
 			.query(
 				`INSERT INTO budget (category, amount, spent)
-            VALUES ('${category}', ${amount}, 0)
+            VALUES ('${category}', ${amount}, 0.00)
             ;`
 			)
 			.then((dbRes) => res.status(200).send(dbRes[0]))
@@ -65,7 +65,7 @@ module.exports = {
 			;`
 			)
 			// .then((dbRes) => res.status(200).send(dbRes[0]))
-			.then(() => res.sentStatus(200))
+			.then(() => res.sendStatus(200))
 			//ask why it was returning two undefined columns when I didn't have the dbres?
 			.catch((err) => console.log(err));
 	},

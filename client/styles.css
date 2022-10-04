@@ -1,17 +1,9 @@
-/* .budget-line {
-	display: flex;
-	justify-content: space-evenly;
-	border-radius: 15px;
-	border: 2px solid purple;
-	margin: 5px;
-} */
-
 :root {
 	--dark: #374151;
 	--darker: #1f2937;
 	--darkest: #111827;
 	--gray: #6b7280;
-	--light: #eee;
+	--light: #ffffff;
 	--pink: #ec4899;
 	--purple: #8b5cf6;
 	--pink1: #f294e3;
@@ -22,10 +14,16 @@
 	--teal2: #0d7d96;
 }
 
+/* Fonts
+font-family: 'Abril Fatface', cursive;
+font-family: 'Handlee', cursive;
+font-family: 'Raleway', sans-serif;
+font-family: 'Roboto', sans-serif; */
+
 * {
 	margin: 0;
 	box-sizing: border-box;
-	font-family: "Fira sans", sans-serif;
+	font-family: "Roboto", sans-serif;
 }
 
 /* * {
@@ -42,8 +40,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
-	color: #fff;
-	background-color: var(--dark);
+	color: #000;
+	background-color: var(--light);
 }
 
 header {
@@ -51,7 +49,10 @@ header {
 	/* max-width: 800px; */
 	width: 100%;
 	margin: 0 auto;
-	background-color: var(--purple1);
+	/* background-color: var(--purple1); */
+	background-image: linear-gradient(to left, var(--teal), var(--pink1));
+	-webkit-background-clip: border-box;
+	/* -webkit-text-fill-color: transparent; */
 }
 
 nav {
@@ -70,18 +71,78 @@ header h1 {
 	font-weight: 900;
 	margin-bottom: 1rem;
 	color: var(--light);
-
-	background-image: linear-gradient(to left, var(--teal), var(--pink1));
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	font-family: "Abril Fatface", cursive;
 	padding: 1rem;
+}
+
+header h3 {
+	font-family: "Handlee", cursive;
+	color: var(--light);
+}
+
+.month_toBeB_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 3rem;
+}
+
+#toBeBudgeted_container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.input_toBeBudgeted {
+	padding: 25px;
+	border-radius: 15px;
+	font-size: 2rem;
+	text-align: center;
+	width: 12rem;
+	background-color: var(--pink1);
+	color: var(--light);
+}
+
+.text_toBeBudgeted {
+	font-family: "Raleway", sans-serif;
+	font-weight: 300;
+	font-size: 1.25rem;
+	margin-top: 0.5rem;
+}
+
+#month {
+	font-family: "Raleway", sans-serif;
+	font-weight: 300;
+	font-size: 2rem;
+	color: var(--dark);
+}
+
+#toBeBudgeted_container {
+}
+
+.main-sub {
+	background-color: var(--teal);
+}
+
+#budget-title {
+	font-family: "Abril Fatface", cursive;
+	font-size: 2.5rem;
+	color: var(--light);
 }
 
 #new-category {
 	display: flex;
+	margin: 1rem;
+	margin-bottom: 3rem;
 }
 
-input,
+input {
+	appearance: none;
+	border: none;
+	outline: none;
+	background: none;
+}
+
 button {
 	appearance: none;
 	border: none;
@@ -91,7 +152,7 @@ button {
 
 #categoryInput {
 	flex: 1 1 40%;
-	background-color: var(--darker);
+	background-color: var(--light);
 	padding: 1rem;
 	border-radius: 1rem;
 	margin-right: 1rem;
@@ -106,7 +167,7 @@ button {
 #amountInput {
 	/* flex-grow | flex-shrink | flex-basis */
 	flex: 1 1 0%;
-	background-color: var(--darker);
+	background-color: var(--light);
 	padding: 1rem;
 	border-radius: 1rem;
 	margin-right: 1rem;
@@ -119,9 +180,9 @@ button {
 }
 
 #addLine {
-	color: var(--pink);
+	/* color: var(--pink); */
 	font-size: 2rem;
-	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	background-image: linear-gradient(to right, var(--teal2), var(--yellow1));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	cursor: pointer;
@@ -137,8 +198,8 @@ button {
 }
 
 main {
-	flex: 1 1 0%;
-	max-width: 800px;
+	flex: 1 1 10%;
+	/* max-width: 900px; */
 	width: 100%;
 	margin: 0 auto;
 }
@@ -157,39 +218,98 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	padding: 2rem;
+	padding: 1rem;
+	margin: 1rem;
+	border-radius: 5px;
+	background-image: linear-gradient(to right, var(--yellow2), var(--yellow1));
+	-webkit-background-clip: border-box;
+	/* -webkit-text-fill-color: transparent; */
 }
 
 .budget-header-container p {
 	font-size: 1.25rem;
 	font-weight: 300;
-	color: var(--gray);
-	margin-bottom: 1rem;
+	color: var(--darker);
 }
 
 #load-category .budget-line {
 	display: flex;
 	justify-content: space-between;
-	background-color: var(--darkest);
+	background-color: var(--light);
 	padding: 1rem;
 	border-radius: 1rem;
-	margin-bottom: 1rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
+	margin-bottom: 0.5rem;
 }
 
-.budget-line .inputLine {
+.budget-line {
 	flex: 1 1 0%;
 }
 
+.inputLine {
+	display: flex;
+	/* justify-content: space-evenly; */
+	/* flex: 1 1 0%; */
+}
+.currency-code-nc {
+	font-size: 1.75rem;
+}
+
+.currency-code {
+	position: absolute;
+	/* left: 8px;
+	top: 10px; */
+	color: #000;
+}
+
+.text-input {
+	padding: 10px 20px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	width: 5rem;
+}
+
 .budget-line .inputLine .text-input {
-	color: var(--light);
-	font-size: 1rem;
-	/* width: 100%;
-	display: block; */
+	color: var(--darkest);
+	font-size: 1.25rem;
+	width: 100%;
+	display: block;
 	transition: 0.4s;
 }
 
+.budget-line .inputLine .cat-input {
+	text-align: left;
+	width: 20rem;
+	color: var(--darkest);
+	font-size: 1.25rem;
+	/* width: 100%; */
+	display: block;
+	transition: 0.4s;
+
+	padding: 10px 20px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+}
+
+.budg-input {
+	direction: rtl;
+	color: lightseagreen;
+	width: 10rem;
+}
+
+.spt-input {
+	direction: rtl;
+	width: 7rem;
+}
+
+.av-input {
+	direction: rtl;
+	width: 7rem;
+}
+
 .budget-line .inputLine .text-input:not(:read-only) {
-	color: var(--pink);
+	color: var(--purple);
 }
 
 /* Not sure this one does anything */
@@ -215,21 +335,27 @@ main {
 }
 
 .budget-line .edit-btn {
-	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	background-image: linear-gradient(to right, var(--teal2), var(--yellow1));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
 .budget-line .delete-btn {
-	color: crimson;
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-.currency-wrap {
-	position: relative;
+footer {
+	background-color: var(--purple1);
+	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	-webkit-background-clip: border-box;
+	/* -webkit-text-fill-color: transparent; */
+	display: flex;
+	justify-content: center;
 }
 
-.currency-code {
-	/* position: absolute; */
-	/* left: 8px; */
-	/* top: 10px; */
+footer h4 {
+	padding: 1rem;
+	color: var(--light);
 }

@@ -24,17 +24,21 @@ const showBudget = () => {
 };
 
 const createBudgetLine = (line) => {
+	//div
 	const budget_line = document.createElement("div");
 	budget_line.classList.add("budget-line");
 	loadCategory.appendChild(budget_line);
 
+	//form
 	const inputLine = document.createElement("form");
 	inputLine.classList.add("inputLine");
 
+	//CATEGORY
 	const ic = document.createElement("div");
 	ic.classList.add("currency-wrap");
 	const input_category = document.createElement("input");
-	input_category.classList.add("text-input");
+	// input_category.classList.add("text-input");
+	input_category.classList.add("cat-input");
 	input_category.type = "text";
 	input_category.value = `${line.category}`;
 	input_category.setAttribute("readonly", "readonly");
@@ -43,6 +47,7 @@ const createBudgetLine = (line) => {
 	ic.appendChild(input_category);
 	inputLine.appendChild(ic);
 
+	//AMOUNT BUDGETED
 	const ib = document.createElement("div");
 	ib.classList.add("currency-wrap");
 	const ib_c = document.createElement("span");
@@ -50,16 +55,26 @@ const createBudgetLine = (line) => {
 	ib_c.innerHTML = "$";
 	const input_budgeted = document.createElement("input");
 	input_budgeted.classList.add("text-input");
+	input_budgeted.classList.add("budg-input");
+
 	input_budgeted.type = "number";
 	input_budgeted.value = `${line.amount}`;
 	input_budgeted.setAttribute("readonly", "readonly");
 	input_budgeted.setAttribute("id", `amount-input-${line.budget_id}`);
 	input_budgeted.setAttribute("step", "0.01");
 
+	//This will display the amount values in the correct currency format, but as a string. Alas. So--saving for later in case I want to figure out an if-else toggle option to display a string on save vs input number on edit
+	// let formatted_ib = new Intl.NumberFormat("en-US", {
+	// 	style: "currency",
+	// 	currency: "USD",
+	// }).format(`${line.amount}`);
+	// input_budgeted.value = formatted_ib;
+
 	ib.appendChild(ib_c);
 	ib.appendChild(input_budgeted);
 	inputLine.appendChild(ib);
 
+	//SPENT
 	const is = document.createElement("div");
 	is.classList.add("currency-wrap");
 	const is_c = document.createElement("span");
@@ -67,15 +82,19 @@ const createBudgetLine = (line) => {
 	is_c.innerHTML = "$";
 	const input_spent = document.createElement("input");
 	input_spent.classList.add("text-input");
+	input_spent.classList.add("spt-input");
+
 	input_spent.type = "number";
 	input_spent.value = `${line.spent}`;
 	input_spent.setAttribute("readonly", "readonly");
 	input_spent.setAttribute("id", `spent-input-${line.budget_id}`);
+	input_spent.setAttribute("step", "0.01");
 
 	is.appendChild(is_c);
 	is.appendChild(input_spent);
 	inputLine.appendChild(is);
 
+	//AVAILABLE
 	const av = document.createElement("div");
 	av.classList.add("currency-wrap");
 	const av_c = document.createElement("span");
@@ -83,20 +102,23 @@ const createBudgetLine = (line) => {
 	av_c.innerHTML = "$";
 	const available = document.createElement("input");
 	available.classList.add("text-input");
+	available.classList.add("av-input");
+
 	available.value = `${line.amount - line.spent}`;
 	available.setAttribute("readonly", "readonly");
+	available.setAttribute("step", "0.01");
 
 	av.appendChild(av_c);
 	av.appendChild(available);
 	inputLine.appendChild(av);
 
+	//EDIT BUTTON
 	const edit_btn = document.createElement("button");
 	edit_btn.classList.add("edit-btn");
 	edit_btn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>';
 	// edit_btn.setAttribute("onclick", `editLine(${line.budget_id})`);
 
 	inputLine.appendChild(edit_btn);
-
 	budget_line.appendChild(inputLine);
 
 	edit_btn.addEventListener("click", (e) => {
@@ -110,7 +132,7 @@ const createBudgetLine = (line) => {
 			input_spent.removeAttribute("readonly");
 			available.removeAttribute("readonly");
 
-			// Delete btn & functionality
+			// DELETE BUTTON & functionality
 			const delete_btn = document.createElement("button");
 			delete_btn.classList.add("delete-btn");
 			delete_btn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
@@ -133,6 +155,7 @@ const createBudgetLine = (line) => {
 			input_spent.setAttribute("readonly", "readonly");
 			available.setAttribute("readonly", "readonly");
 
+			const delete_btn = document.getElementById("delete-btn");
 			inputLine.removeChild(delete_btn);
 		}
 	});

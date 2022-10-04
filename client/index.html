@@ -6,6 +6,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="styles.css" />
 		<script src="https://kit.fontawesome.com/62c5908d07.js" crossorigin="anonymous"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Handlee&family=Raleway:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="icon" href="./assets/unicorn-logo.png" type="image/x-icon" />
 		<title>Unicorn Budget | The Magical Budget for Kids</title>
 	</head>
@@ -13,45 +19,58 @@
 		<header>
 			<nav>
 				<img src="./assets/unicorn-logo.png" alt="unicorn-logo" id="unicorn-logo" />
-				<h1>Unicorn Budget</h1>
+				<div>
+					<h1>Unicorn Budget</h1>
+					<h3>The Magical Budget for Kids</h3>
+				</div>
 			</nav>
 			<!-- <h2>The Magical Budget for Kids</h2> -->
 		</header>
 
 		<main>
-			<div class="budget-title">
-				<h1>Budget</h1>
-			</div>
-
-			<!-- This is for the Post Request -->
-
-			<!-- Creates a new Category -->
-			<section id="new-category">
-				<input id="categoryInput" placeholder="Category Name" />
-				<div class="currency-wrap">
-					<span class="currency-code">$</span>
-					<input id="amountInput" placeholder="Budgeted Amount $" type="number" step="0.01" />
+			<section class="month_toBeB_container">
+				<h1 id="month">October 2022</h1>
+				<div id="toBeBudgeted_container">
+					<input type="number" id="to_be_budgeted" class="input_toBeBudgeted" placeholder="$0.00" size="4" />
+					<h4 class="text_toBeBudgeted">To be budgeted</h4>
 				</div>
-				<!-- <input id="spentInput" placeholder="Spent" type="number" step=".01" /> -->
-				<button id="addLine"><i class="fa-solid fa-circle-plus"></i></button>
 			</section>
 
-			<!-- This is for the Put Request -->
+			<section class="main-sub">
+				<div class="budget-title">
+					<h1 id="budget-title">Budget</h1>
+				</div>
 
-			<!-- Displays database of current budget values -->
-			<section id="budget-list">
-				<section class="budget-header-container">
-					<p>Category</p>
-					<p>Budgeted</p>
-					<p>Spent</p>
-					<p>Available</p>
+				<!-- This is for the Post Request -->
+
+				<!-- Creates a new Category -->
+				<section id="new-category">
+					<input id="categoryInput" placeholder="Category Name" />
+					<div class="currency-wrap">
+						<span class="currency-code-nc">$</span>
+						<input id="amountInput" placeholder="0.00" type="number" step="0.01" min="0" />
+					</div>
+					<!-- <input id="spentInput" placeholder="Spent" type="number" step=".01" /> -->
+					<button id="addLine"><i class="fa-solid fa-circle-plus"></i></button>
 				</section>
-				<div id="load-category">
-					<!-- <div class="budget-line" (task)>
+
+				<!-- This is for the Put Request -->
+
+				<!-- Displays database of current budget values -->
+				<section id="budget-list">
+					<section class="budget-header-container">
+						<p>Category</p>
+						<p>Budgeted</p>
+						<p>Spent</p>
+						<p>Available</p>
+					</section>
+
+					<div id="load-category">
+						<!-- <div class="budget-line" (task)>
 							<form class="inputLine" (content)>
 								<div class="currency-wrap">
 									<input 
-										class="text-input" 
+										class="text-input cat-input" 
 										type="text" 
 										value=`${line.category}` 
 										readonly>
@@ -59,7 +78,7 @@
 								<div class="currency-wrap">
 									<span class="currency-code">$</span>
 									<input
-										class="text-input"
+										class="text-input budg-input"
 										type="number"
 										value=`${line.amount}`
 										readonly>
@@ -67,7 +86,7 @@
 								<div class="currency-wrap">
 									<span class="currency-code">$</span>
 									<input
-										class="text-input"
+										class="text-input spt-input"
 										type="number"
 										value=`${line.spent}`
 										readonly>
@@ -76,7 +95,7 @@
 								<div class="currency-wrap">
 									<span class="currency-code">$</span>
 									<input
-									class="text-input"
+									class="text-input av-input"
 									value=`${line.amount - line.spent}`
 									readonly>
 								</div>
@@ -89,7 +108,8 @@
 								</button>
 							</form>
 						</div> -->
-				</div>
+					</div>
+				</section>
 			</section>
 
 			<!-- Testing the below from YT-TASK LIST -->
@@ -121,6 +141,10 @@
 				</div>
 			</section> -->
 		</main>
+
+		<footer>
+			<h4>Copyright &#169; 2022 Kelsey Taylor | All Rights Reserved</h4>
+		</footer>
 
 		<script src="../node_modules/axios/dist/axios.min.js"></script>
 		<script src="index.js"></script>
