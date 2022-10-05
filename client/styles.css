@@ -95,7 +95,7 @@ header h3 {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 3rem;
+	padding: 1rem;
 }
 
 #toBeBudgeted_container {
@@ -135,6 +135,30 @@ header h3 {
 	color: var(--dark);
 }
 
+#music-btn {
+	display: flex;
+	justify-content: center;
+	padding: 1rem;
+}
+
+.music-btn {
+	font-size: 2rem;
+	background-image: linear-gradient(to right, var(--teal), var(--purple));
+	-webkit-background-clip: border-box;
+	-webkit-text-fill-color: var(--darker);
+	padding: 1rem;
+	transition: 0.4s;
+	border-radius: 25px;
+}
+
+.music-btn:hover {
+	opacity: 0.8;
+	cursor: pointer;
+}
+
+.music-btn:active {
+	opacity: 0.6;
+}
 .main-sub {
 	background-color: var(--teal);
 	/* margin-bottom: 3rem; */
@@ -377,13 +401,13 @@ main {
 }
 
 .budget-line .edit-btn {
-	background-image: linear-gradient(to right, var(--teal2), var(--yellow1));
+	background-image: linear-gradient(to right, var(--teal2), var(--purple));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
 .budget-line .delete-btn {
-	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	background-image: linear-gradient(to right, var(--pink1), var(--purple));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -398,7 +422,7 @@ main {
 
 footer {
 	background-color: var(--purple1);
-	background-image: linear-gradient(to right, var(--pink), var(--purple));
+	background-image: linear-gradient(to right, var(--pink1), var(--purple));
 	-webkit-background-clip: border-box;
 	/* -webkit-text-fill-color: transparent; */
 	display: flex;
