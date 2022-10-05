@@ -107,10 +107,15 @@ const createBudgetLine = (line) => {
 	available.value = `${line.amount - line.spent}`;
 	available.setAttribute("readonly", "readonly");
 	available.setAttribute("step", "0.01");
+	available.setAttribute("id", `available-${line.budget_id}`);
 
 	av.appendChild(av_c);
 	av.appendChild(available);
 	inputLine.appendChild(av);
+
+	if (available.value === 0) {
+		available.classList.add("available-color-no");
+	}
 
 	//EDIT BUTTON
 	const edit_btn = document.createElement("button");
@@ -127,9 +132,9 @@ const createBudgetLine = (line) => {
 		if (edit_btn.innerHTML == '<i class="fa-solid fa-pen-to-square"></i>') {
 			edit_btn.innerHTML = `<i class="fa-solid fa-floppy-disk save-floppy" onclick="editLine_save(${line.budget_id})"></i>`;
 			input_category.removeAttribute("readonly");
-			input_budgeted.focus();
 			input_budgeted.removeAttribute("readonly");
 			input_spent.removeAttribute("readonly");
+			input_spent.focus();
 			available.removeAttribute("readonly");
 
 			// DELETE BUTTON & functionality
@@ -159,6 +164,15 @@ const createBudgetLine = (line) => {
 			inputLine.removeChild(delete_btn);
 		}
 	});
+
+	const av_amt = document.getElementById(`available-${line.budget_id}`);
+	if (av_amt.value > 0) {
+		av_amt.classList.add("available-color-yes");
+	} else {
+		av_amt.classList.remove("avilable-color-yes");
+	}
+
+	// const toBeBudgeted_input = document.getElementById(to_be_budgeted);
 
 	// delete_btn.addEventListener("submit", (e) => {
 	// 	e.preventDefault();

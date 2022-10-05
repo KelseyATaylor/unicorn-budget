@@ -3,6 +3,7 @@
 	--darker: #1f2937;
 	--darkest: #111827;
 	--gray: #6b7280;
+	--gray2: #ebeced;
 	--light: #ffffff;
 	--pink: #ec4899;
 	--purple: #8b5cf6;
@@ -111,10 +112,12 @@ header h3 {
 	width: 12rem;
 	background-color: var(--pink1);
 	color: var(--light);
+	visibility: hidden;
 }
 
 .input_toBeBudgeted::placeholder {
 	color: var(--light);
+	visibility: hidden;
 }
 
 .text_toBeBudgeted {
@@ -122,6 +125,7 @@ header h3 {
 	font-weight: 300;
 	font-size: 1.25rem;
 	margin-top: 0.5rem;
+	visibility: hidden;
 }
 
 #month {
@@ -136,6 +140,8 @@ header h3 {
 
 .main-sub {
 	background-color: var(--teal);
+	/* margin-bottom: 3rem; */
+	padding-bottom: 3rem;
 }
 
 #budget-title {
@@ -170,7 +176,7 @@ button {
 	padding: 1rem;
 	border-radius: 1rem;
 	margin-right: 1rem;
-	color: var(--light);
+	color: var(--darker);
 	font-size: 1.25rem;
 }
 
@@ -185,7 +191,7 @@ button {
 	padding: 1rem;
 	border-radius: 1rem;
 	margin-right: 1rem;
-	color: var(--light);
+	color: var(--darker);
 	font-size: 1.25rem;
 }
 
@@ -269,13 +275,23 @@ main {
 .currency-code-nc {
 	font-size: 1.75rem;
 	color: var(--light);
+	padding-right: 0.5rem;
+}
+
+.currency-wrap {
+	display: flex;
+	padding-left: 0.5rem;
+	justify-content: left;
+	align-items: center;
 }
 
 .currency-code {
 	position: absolute;
 	/* left: 8px;
 	top: 10px; */
-	color: #000;
+	color: var(--darkest);
+	font-size: 1.25rem;
+	padding-left: 0.5rem;
 }
 
 .text-input {
@@ -283,6 +299,10 @@ main {
 	border: solid 1px #ccc;
 	border-radius: 5px;
 	width: 5rem;
+}
+
+.budget-line input {
+	border-radius: 20px;
 }
 
 .budget-line .inputLine .text-input {
@@ -308,22 +328,26 @@ main {
 }
 
 .budg-input {
-	direction: rtl;
-	color: lightseagreen;
+	direction: right;
 	width: 10rem;
 }
 
 .spt-input {
-	direction: rtl;
+	direction: right;
 	width: 7rem;
 }
 
 .av-input {
-	direction: rtl;
-	width: 7rem;
+	direction: right;
+	width: 3rem;
+	background-color: var(--gray2);
 }
 
 .budget-line .inputLine .text-input:not(:read-only) {
+	color: var(--purple);
+}
+
+.budget-line .cat-input:not(:read-only) {
 	color: var(--purple);
 }
 
@@ -359,6 +383,14 @@ main {
 	background-image: linear-gradient(to right, var(--pink), var(--purple));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.available-color-yes {
+	background-color: var(--green);
+}
+
+.available-color-no {
+	background-color: var(--gray2);
 }
 
 footer {
