@@ -135,9 +135,6 @@ header h3 {
 	color: var(--dark);
 }
 
-#toBeBudgeted_container {
-}
-
 .main-sub {
 	background-color: var(--teal);
 	/* margin-bottom: 3rem; */
@@ -237,7 +234,7 @@ main {
 .budget-header-container {
 	display: flex;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	padding: 1rem;
 	margin: 1rem;
 	border-radius: 5px;
@@ -250,6 +247,12 @@ main {
 	font-size: 1.25rem;
 	font-weight: 300;
 	color: var(--darker);
+	padding-left: 3rem;
+	padding-right: 2rem;
+}
+.budget-header-container div {
+	display: flex;
+	justify-content: flex-end;
 }
 
 #load-category .budget-line {
