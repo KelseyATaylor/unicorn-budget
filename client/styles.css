@@ -53,7 +53,7 @@ header {
 	margin: 0 auto;
 	/* background-color: var(--purple1); */
 	background-image: linear-gradient(to left, var(--teal), var(--pink1));
-	-webkit-background-clip: border-box;
+	/* -webkit-background-clip: border-box; */
 	/* -webkit-text-fill-color: transparent; */
 }
 
@@ -225,7 +225,7 @@ button {
 	background-image: linear-gradient(to right, var(--teal2), var(--green));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	color: var(--green);
+	/* color: var(--green); */
 	cursor: pointer;
 	transition: 0.4s;
 }
